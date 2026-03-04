@@ -1,0 +1,23 @@
+.header {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  font-family: var(--font-hebrew);
+  direction: rtl;
+  pointer-events: none;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #666;
+  margin-top: 2px;
+}

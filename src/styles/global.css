@@ -1,0 +1,25 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #000000;
+  --color-text: #e0e0e0;
+  --color-text-secondary: #999;
+  --color-accent: #c9a84c;
+  --color-accent-light: rgba(201, 168, 76, 0.15);
+  --color-border: #222;
+  --color-card-bg: #111;
+  --font-hebrew: 'Heebo', sans-serif;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-bg);
+  font-family: var(--font-hebrew);
+  direction: rtl;
+}
