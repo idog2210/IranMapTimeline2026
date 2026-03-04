@@ -34,17 +34,30 @@ export function TimelineModal({ country, onClose }: Props) {
     return () => window.removeEventListener('keydown', handler, true);
   }, [selectedEvent]);
 
-  // Map vertical mouse-wheel to horizontal scroll (smooth, RTL-aware)
+  // Mouse-wheel → horizontal scroll with RAF momentum (RTL: down = left)
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
+    let pending = 0;
+    let rafId: number | null = null;
+    const tick = () => {
+      const step = pending * 0.18;
+      if (Math.abs(step) < 0.5) { pending = 0; rafId = null; return; }
+      el.scrollLeft += step;
+      pending -= step;
+      rafId = requestAnimationFrame(tick);
+    };
     const onWheel = (e: WheelEvent) => {
       if (e.deltaY === 0) return;
       e.preventDefault();
-      el.scrollBy({ left: e.deltaY * 1.5, behavior: 'smooth' });
+      pending += -e.deltaY * 1.2;
+      if (rafId === null) rafId = requestAnimationFrame(tick);
     };
     el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+    };
   }, [country]);
 
   // Auto-scroll to the rightmost (newest) event after the modal opens
