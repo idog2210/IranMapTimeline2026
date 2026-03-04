@@ -116,54 +116,54 @@
   background: #ffd700;
 }
 
-/* ── Timeline track — 300px fixed height, central line at y=150 ── */
+/* ── Timeline track — 380px fixed height, central line at y=190 ── */
 .track {
   display: flex;
   flex-direction: row;
   align-items: stretch;
   position: relative;
-  height: 300px;
+  height: 380px;
   padding: 0 40px;
   min-width: max-content;
   background: #000;
 }
 
-/* Central horizontal line: 2px, center at y=150 → top at y=149 */
+/* Central horizontal line: 3px, center at y=190 → top at y=188 */
 .line {
   position: absolute;
-  top: 149px;
+  top: 188px;
   left: 40px;
   right: 40px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.08);
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
   z-index: 0;
 }
 
 .lineAccent {
-  height: 2px;
+  height: 3px;
   background: linear-gradient(90deg, #c9a84c 0%, rgba(201, 168, 76, 0.1) 100%);
   transform-origin: left;
   width: 100%;
 }
 
-/* ── Event item — positioned container, 300px tall ── */
+/* ── Event item — positioned container, 380px tall ── */
 .eventItem {
   position: relative;
-  min-width: 175px;
-  max-width: 205px;
-  height: 300px;
+  min-width: 215px;
+  max-width: 255px;
+  height: 380px;
   flex-shrink: 0;
 }
 
-/* Dot — center at y=150: top=145, height=10 → 145+5=150 ✓ */
+/* Dot — center at y=190: top=183, height=14 → 183+7=190 ✓ */
 .dot {
   position: absolute;
-  top: 145px;
+  top: 183px;
   left: 50%;
   transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: #ffd700;
   z-index: 3;
@@ -174,8 +174,8 @@
 .dot:hover {
   transform: translateX(-50%) scale(1.8);
   box-shadow:
-    0 0 0 5px rgba(255, 215, 0, 0.15),
-    0 0 18px rgba(255, 215, 0, 0.5);
+    0 0 0 6px rgba(255, 215, 0, 0.15),
+    0 0 22px rgba(255, 215, 0, 0.5);
 }
 
 /* Vertical connector */
@@ -191,44 +191,44 @@
 /* ─────────────────────────────────────────────
    ABOVE items (even index): card in top half
 
-   Geometry:
-     card top:    8px
-     card bottom: 300 - 167 = 133px  (CSS: bottom: 167px)
-     connector:   y=133px → y=145px (dot top), height=12px
-                  (CSS: bottom: 155px → bottom edge at 300-155=145px; top at 133px)
+   Geometry (380px track, midpoint y=190, dot top=183):
+     card top:    12px
+     card bottom: y=167px  (CSS: bottom: 380-167=213px)
+     connector:   y=167px → y=183px (dot top), height=16px
+                  (CSS: bottom: 380-183=197px)
    ───────────────────────────────────────────── */
 .eventAbove .card {
   position: absolute;
-  top: 8px;
-  bottom: 167px;
+  top: 12px;
+  bottom: 213px;
   left: 10px;
   right: 10px;
 }
 
 .eventAbove .connectorV {
-  bottom: 155px;
-  height: 12px;
+  bottom: 197px;
+  height: 16px;
 }
 
 /* ─────────────────────────────────────────────
    BELOW items (odd index): card in bottom half
 
-   Geometry:
-     connector:   y=155px (dot bottom) → y=167px, height=12px
-     card top:    167px
-     card bottom: 300 - 8 = 292px  (CSS: bottom: 8px)
+   Geometry (dot bottom=197px):
+     connector:   y=197px → y=213px, height=16px
+     card top:    213px
+     card bottom: 380-12=368px  (CSS: bottom: 12px)
    ───────────────────────────────────────────── */
 .eventBelow .card {
   position: absolute;
-  top: 167px;
-  bottom: 8px;
+  top: 213px;
+  bottom: 12px;
   left: 10px;
   right: 10px;
 }
 
 .eventBelow .connectorV {
-  top: 155px;
-  height: 12px;
+  top: 197px;
+  height: 16px;
 }
 
 /* ── Card ── */
@@ -236,7 +236,7 @@
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 8px;
-  padding: 10px 12px;
+  padding: 14px 16px;
   text-align: right;
   direction: rtl;
   overflow: hidden;
@@ -252,14 +252,14 @@
 .cardMeta {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 5px;
+  gap: 8px;
+  margin-bottom: 8px;
   justify-content: flex-end;
 }
 
 .time {
   font-family: var(--font-hebrew);
-  font-size: 0.62rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #c9a84c;
   letter-spacing: 0.04em;
@@ -267,17 +267,17 @@
 
 .date {
   font-family: var(--font-hebrew);
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   font-weight: 300;
   color: #ffffff;
 }
 
 .title {
   font-family: var(--font-hebrew);
-  font-size: 0.82rem;
+  font-size: 1.0rem;
   font-weight: 700;
   color: #fff;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -287,13 +287,13 @@
 
 .desc {
   font-family: var(--font-hebrew);
-  font-size: 0.7rem;
+  font-size: 0.86rem;
   font-weight: 300;
   color: #888;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.45;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -303,7 +303,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  height: 380px;
   padding: 0 40px;
   font-family: var(--font-hebrew);
   font-size: 0.9rem;
